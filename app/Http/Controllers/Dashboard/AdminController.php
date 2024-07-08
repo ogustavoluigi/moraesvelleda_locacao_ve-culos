@@ -1,23 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\Auth;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use Inertia\Inertia;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use Inertia\Inertia;
-use Inertia\Response;
 
-class RegisteredUserController extends Controller
+class AdminController extends Controller
 {
-    public function create(): Response
+    public function index()
     {
-        return Inertia::render('Dashboard/Auth/Register');
+        $admins = Admin::paginate(8);
+
+        return Inertia::render('Dashboard/Admins/Index', compact('admins'));
+    }
+
+    public function create()
+    {
+        return Inertia::render("Dashboard/Admins/Create");
     }
 
     public function store(Request $request): RedirectResponse
@@ -36,8 +41,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::guard('admin')->login($user);
-
-        return redirect(route('dashboard.index', absolute: false));
+        return redirect(route('dashboard.admins.index', absolute: false));
     }
 }

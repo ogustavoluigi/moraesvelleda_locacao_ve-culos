@@ -26,6 +26,9 @@ const showingNavigationDropdown = ref(false);
 
                             <!-- Navigation Links -->
                             <div v-if="$page.props.auth.admin" class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <AdminNavLink :href="route('dashboard.admins.index')" :active="route().current('dashboard.admins.index')">
+                                    Administradores
+                                </AdminNavLink>
                             </div>
                         </div>
 
