@@ -44,7 +44,7 @@ php artisan key:generate
 
 # Se você instalou o projeto em uma subpasta, configure a URL base do Vite e edite a seguinte linha:
 
-# VITE_BASE_URL="/path/"
+# VITE_BASE_URL="/path/public/"
 
 # Execute as migrations
 php artisan migrate
