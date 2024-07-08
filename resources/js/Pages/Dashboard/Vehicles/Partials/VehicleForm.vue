@@ -44,32 +44,20 @@ const saveVehicle = () => {
         rental_cost: form.rental_cost,
         preserveScroll: true,
         forceFormData: true,
-        onSuccess: () => form.reset(),
+        onSuccess: () => {
+            form.reset();
+        },
         onError: (error) => {
             console.log(error);
-            if (form.errors.password) {
-                form.reset('password', 'password_confirmation');
-                passwordInput.value.focus();
-            }
-            if (form.errors.current_password) {
-                form.reset('current_password');
-                currentPasswordInput.value.focus();
-            }
         },
     });
     else form.post(route('dashboard.vehicles.store'), {
         preserveScroll: true,
-        onSuccess: () => form.reset(),
+        onSuccess: () => {
+            form.reset();
+        },
         onError: (error) => {
             console.log(error);
-            if (form.errors.password) {
-                form.reset('password', 'password_confirmation');
-                passwordInput.value.focus();
-            }
-            if (form.errors.current_password) {
-                form.reset('current_password');
-                currentPasswordInput.value.focus();
-            }
         },
     });
 };
