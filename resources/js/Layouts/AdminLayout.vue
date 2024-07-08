@@ -26,6 +26,12 @@ const showingNavigationDropdown = ref(false);
 
                             <!-- Navigation Links -->
                             <div v-if="$page.props.auth.admin" class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <AdminNavLink :href="route('dashboard.vehicles.index')" :active="route().current('dashboard.vehicles.index')">
+                                    Veículos
+                                </AdminNavLink>
+                                <AdminNavLink :href="route('dashboard.rentals.index')" :active="route().current('dashboard.rentals.index')">
+                                    Reservas
+                                </AdminNavLink>
                                 <AdminNavLink :href="route('dashboard.users.index')" :active="route().current('dashboard.users.index')">
                                     Clientes
                                 </AdminNavLink>
@@ -89,6 +95,8 @@ const showingNavigationDropdown = ref(false);
                 <div class="sm:hidden" 
                     :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }">
                     <div v-if="$page.props.auth.user" class="pt-2 pb-3 space-y-1">
+                        <AdminResponsiveNavLink :href="route('dashboard.vehicles.index')"> Veículos </AdminResponsiveNavLink>
+                        <AdminResponsiveNavLink :href="route('dashboard.rentals.index')"> Reservas </AdminResponsiveNavLink>
                         <AdminResponsiveNavLink :href="route('dashboard.users.index')"> Clientes </AdminResponsiveNavLink>
                         <AdminResponsiveNavLink :href="route('dashboard.admins.index')"> Administradores </AdminResponsiveNavLink>
                     </div>
