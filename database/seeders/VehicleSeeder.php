@@ -21,13 +21,13 @@ class VehicleSeeder extends Seeder
         Vehicle::create(
             [
                 "model" => "Polo",
-                "description" => "Volkswagen Polo",
+                "description" => "Teto, detalhes laterais e faixa traseira pintados em preto Ninja, emblema Rock In Rio aplicado no interior e exterior, bancos exclusivos e rodas escurecidas que vieram pra marcar presença.",
                 "plate" => "MCN1240",
                 "brand" => "Volkswagen",
                 "photo"  => "uploads/" . $fakeFileName,
                 'rental_cost' => 100,
                 'category_id' => 1,
-                "year" => 2020
+                "year" => 2024
             ]
         );
     }
