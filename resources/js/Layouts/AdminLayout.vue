@@ -89,6 +89,8 @@ const showingNavigationDropdown = ref(false);
                 <div class="sm:hidden" 
                     :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }">
                     <div v-if="$page.props.auth.user" class="pt-2 pb-3 space-y-1">
+                        <AdminResponsiveNavLink :href="route('dashboard.users.index')"> Clientes </AdminResponsiveNavLink>
+                        <AdminResponsiveNavLink :href="route('dashboard.admins.index')"> Administradores </AdminResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->
@@ -101,8 +103,8 @@ const showingNavigationDropdown = ref(false);
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <AdminResponsiveNavLink :href="route('profile.edit')"> Perfil </AdminResponsiveNavLink>
-                            <AdminResponsiveNavLink :href="route('logout')" method="post" as="button">
+                            <AdminResponsiveNavLink :href="route('dashboard.profile.edit')"> Perfil </AdminResponsiveNavLink>
+                            <AdminResponsiveNavLink :href="route('dashboard.logout')" method="post" as="button">
                                 Sair
                             </AdminResponsiveNavLink>
                         </div>

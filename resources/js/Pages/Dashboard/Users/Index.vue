@@ -25,16 +25,16 @@ defineProps({
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-white">
                     <tr>
-                        <th scope="col" class="px-6 py-5 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                        <th scope="col" class="px-6 py-5 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">E-mail</th>
-                        <th scope="col" class="px-6 py-5 text-right text-xs font-medium text-gray-500 tracking-wider"></th>
+                        <th scope="col" class="px-6 py-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                        <th scope="col" class="px-6 py-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">E-mail</th>
+                        <th scope="col" class="px-6 py-6 text-right text-xs font-medium text-gray-500 tracking-wider"></th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     
                     <tr v-for="user in users.data">
                         <td class="px-6 text-left">{{ user.name }}</td>
-                        <td class="px-6 text-left">{{ user.email }}</td>
+                        <td class="px-6 text-left hidden sm:table-cell">{{ user.email }}</td>
                         <td class="px-6 py-4 whitespace-nowrap w-0">
                             <PrimaryButtonLink class="me-3" :href="route('dashboard.users.edit', user.id)">Editar</PrimaryButtonLink>
 
