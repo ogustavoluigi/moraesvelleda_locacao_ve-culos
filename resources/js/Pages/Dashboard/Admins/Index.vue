@@ -33,8 +33,8 @@ defineProps({
                 <tbody class="bg-white divide-y divide-gray-200">
                     
                     <tr v-for="admin in admins.data">
-                        <td class="px-6 py-6 text-left">{{ admin.name }}</td>
-                        <td class="px-6 py-6 text-left">{{ admin.email }}</td>
+                        <td class="px-6 py-5 text-left">{{ admin.name }}</td>
+                        <td class="px-6 py-5 text-left">{{ admin.email }}</td>
                         <td></td>
                     </tr>
 

@@ -21,11 +21,11 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="Adicionar Admin" />
+    <Head title="Adicionar Administrador" />
 
     <AdminLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Adicionar novo veículo</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Adicionar novo administrador</h2>
         </template>
 
         <div class="pt-3 pb-12 max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">

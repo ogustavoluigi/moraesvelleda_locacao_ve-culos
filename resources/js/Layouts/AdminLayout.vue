@@ -26,20 +26,23 @@ const showingNavigationDropdown = ref(false);
 
                             <!-- Navigation Links -->
                             <div v-if="$page.props.auth.admin" class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <AdminNavLink :href="route('dashboard.users.index')" :active="route().current('dashboard.users.index')">
+                                    Clientes
+                                </AdminNavLink>
                                 <AdminNavLink :href="route('dashboard.admins.index')" :active="route().current('dashboard.admins.index')">
                                     Administradores
                                 </AdminNavLink>
                             </div>
                         </div>
 
-                        <div v-if="$page.props.auth.user" class="hidden sm:flex sm:items-center sm:ms-6">
+                        <div v-if="$page.props.auth.admin" class="hidden sm:flex sm:items-center sm:ms-6">
                             <!-- Settings Dropdown -->
                             <div class="ms-3 relative">
                                 <Dropdown align="right" width="48">
                                     <template #trigger>
                                         <span class="inline-flex rounded-md">
                                             <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-300 bg-transparent hover:text-gray-400 focus:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                                                {{ $page.props.auth.user.name }}
+                                                {{ $page.props.auth.admin.name }}
                                                 <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
                                                 </svg>
