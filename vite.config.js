@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export default defineConfig({
-    base: process.env.VITE_BASE_URL || '/',
+    base: process.env.VITE_BASE_URL + '/build/' || '/',
     plugins: [
         laravel({
             input: ['resources/js/app.js'],
