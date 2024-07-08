@@ -15,8 +15,8 @@ Passos para clonar o repositório e instalar as dependências.
 
 ```bash
 # Clone o repositório
-git clone https://seu-repositorio.git
-cd nome-do-projeto
+git clone https://github.com/ogustavoluigi/moraesvelleda_locacao_veiculos.git
+cd moraesvelleda_locacao_veiculos
 
 # Instale as dependências PHP
 composer install
@@ -31,6 +31,9 @@ cp .env.example .env
 
 # Gere a chave da aplicação
 php artisan key:generate
+
+# Criar o link simbólico
+php artisan storage:link
 
 # Configure o arquivo .env com as informações do seu banco de dados
 # Abra o arquivo .env e edite as seguintes linhas:
