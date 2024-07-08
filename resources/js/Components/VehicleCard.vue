@@ -1,3 +1,28 @@
+<script setup>
+import { useForm } from '@inertiajs/vue3';
+
+defineProps({
+    vehicle: {
+        type: Object,
+        required: true
+    }
+});
+
+const cancelReservation = () => {
+    let rental = this.vehicle.active_rental;
+    let rentalId = rental.id;
+
+    try {
+        useForm({status: "Cancelada"}).put(route('rentals.update', rentalId), {
+            onFinish: () => {},
+        });
+    } catch (error) {
+        console.error('Error when canceling rental:', error);
+    }
+}
+
+</script>
+
 <template>
     <div class="flex flex-col items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10">
         <img class="w-full h-[200px] object-cover" :src="vehicle.photo">
@@ -18,27 +43,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import { useForm } from '@inertiajs/vue3';
-
-export default {
-    props: {
-        vehicle: Object
-    },
-    methods: {
-        cancelReservation() {
-            let rental = this.vehicle.active_rental;
-            let rentalId = rental.id;
-
-            try {
-                useForm({status: "Cancelada"}).put(route('rentals.update', rentalId), {
-                    onFinish: () => {},
-                });
-            } catch (error) {
-                console.error('Error when canceling rental:', error);
-            }
-        },
-    }
-};
-</script>
