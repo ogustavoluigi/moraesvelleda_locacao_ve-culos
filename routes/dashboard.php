@@ -7,6 +7,8 @@ use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\AdminController;
+use App\Http\Controllers\Dashboard\VehicleController;
+use App\Http\Controllers\Dashboard\RentalController;
 
 Route::middleware('guest:admin')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
@@ -15,6 +17,10 @@ Route::middleware('guest:admin')->group(function () {
 
 Route::middleware('auth:admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
+
+    Route::resource('/veiculos', VehicleController::class)->names("vehicles");
+
+    Route::get('/reservas', [RentalController::class, 'index'])->name("rentals.index");
 
     Route::resource('/usuarios', UserController::class)->names("users")->except(['create', 'store']);
     Route::put('/usuarios/{user}/password', [UserController::class, 'passwordUpdate'])->name('users.password.update');
