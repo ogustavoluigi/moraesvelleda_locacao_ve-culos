@@ -18,6 +18,10 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             ...parent::share($request),
+            'auth' => [
+                'user' => auth()->user(),
+                'admin' => auth('admin')->user()
+            ],
             'base' => [
                 'url' => url('/')
             ],
