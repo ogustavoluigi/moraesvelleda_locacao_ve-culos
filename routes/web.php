@@ -8,14 +8,23 @@ use App\Http\Controllers\RentalController;
 
 Route::get('/', [AppController::class, 'index'])->name('index');
 
-Route::group(['as' => 'vehicles.', 'controller' => VehicleController::class], function () {
-    Route::get('/veiculos', 'index')->name('index');
-    Route::get('/veiculos/{slug}', 'show')->name('show');
+Route::group(['prefix' => 'veiculos', 'as' => 'vehicles.', 'controller' => VehicleController::class], function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/{slug}', 'show')->name('show');
 });
 
 Route::group(['prefix' => 'conta', 'middleware' => 'auth'], function () {
-    Route::resource('reservas', RentalController::class)->only(['index', 'store', 'update'])->names("rentals");
-    Route::singleton('profile', ProfileController::class)->names('profile')->destroyable()->only('edit', 'update', 'destroy');
+    Route::group(['prefix' => 'reservas', 'as' => 'rentals.', 'controller' => RentalController::class], function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+        Route::put('/{id}', 'update')->name('update');
+    });
+
+    Route::group(['prefix' => 'perfil', 'as' => 'profile.', 'controller' => ProfileController::class], function () {
+        Route::get('/editar', 'edit')->name('edit');
+        Route::put('/', 'update')->name('update');
+        Route::delete('/', 'destroy')->name('destroy');
+    });
 });
 
 require __DIR__ . '/auth.php';

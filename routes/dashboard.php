@@ -18,16 +18,37 @@ Route::middleware('guest:admin')->group(function () {
 Route::middleware('auth:admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
 
-    Route::resource('/veiculos', VehicleController::class)->names("vehicles");
+    Route::group(['prefix' => 'veiculos', 'as' => 'vehicles.', 'controller' => VehicleController::class], function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/criar', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{id}', 'show')->name('show');
+        Route::get('/{id}/editar', 'edit')->name('edit');
+        Route::put('/{id}', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
+    });
 
     Route::get('/reservas', [RentalController::class, 'index'])->name("rentals.index");
 
-    Route::resource('/usuarios', UserController::class)->names("users")->except(['create', 'store']);
-    Route::put('/usuarios/{user}/password', [UserController::class, 'passwordUpdate'])->name('users.password.update');
+    Route::group(['prefix' => 'usuarios', 'as' => 'users.', 'controller' => UserController::class], function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}/editar', 'edit')->name('edit');
+        Route::put('/{id}', 'update')->name('update');
+        Route::put('/{id}/password', 'passwordUpdate')->name('password.update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
+    });
 
-    Route::resource('/admins', AdminController::class)->names("admins")->only(['index', 'create', 'store']);
+    Route::group(['prefix' => 'admins', 'as' => 'admins.', 'controller' => AdminController::class], function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/criar', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+    });
 
-    Route::singleton('profile', ProfileController::class)->names('profile')->destroyable()->only(['edit', 'update', 'destroy']);
+    Route::group(['prefix' => 'perfil', 'as' => 'profile.', 'controller' => ProfileController::class], function () {
+        Route::get('/editar', 'edit')->name('edit');
+        Route::put('/', 'update')->name('update');
+        Route::delete('/', 'destroy')->name('destroy');
+    });
 
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
