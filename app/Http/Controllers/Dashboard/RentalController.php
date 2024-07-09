@@ -16,7 +16,7 @@ class RentalController extends Controller
             $activeRental->update(['status' => 'Concluída']);
         }
 
-        $rentals = Rental::with('user', 'vehicle')->paginate(8);
+        $rentals = Rental::with('user', 'vehicle')->latest()->paginate(8);
 
         return Inertia::render('Dashboard/Rentals/Index', compact('rentals'));
     }

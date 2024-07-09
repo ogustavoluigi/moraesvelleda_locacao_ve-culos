@@ -16,16 +16,16 @@ class RentalRequest extends FormRequest
     {
         return [
             'vehicle_id' => ['required', 'exists:vehicles,id'],
-            'start_date' => ['required', 'date', 'after_or_equal:' . Carbon::now()->toDateTimeString()],
-            'end_date' => ['required', 'date', 'after_or_equal:' . Carbon::now()->toDateTimeString()],
+            'start_date' => ['required', 'date', 'after:now'],
+            'end_date' => ['required', 'date', 'after:start_date'],
         ];
     }
 
     public function messages()
     {
         return [
-            'start_date.after_or_equal' => 'A data e hora de retirada não podem ser anteriores a agora.',
-            'end_date.after_or_equal' => 'A data e hora de devolução não podem ser anteriores a agora.',
+            'start_date.after' => 'A data e hora de retirada não podem ser anteriores a agora.',
+            'end_date.after' => 'A data e hora de devolução não podem ser anterior a hora de retirada.',
         ];
     }
 }
