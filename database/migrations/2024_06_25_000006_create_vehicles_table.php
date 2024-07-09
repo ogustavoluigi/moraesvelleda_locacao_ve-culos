@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
             $table->string('slug');
-            $table->char("plate", 7)->unique();
+            $table->char("plate", 8)->unique();
             $table->string("model");
             $table->string("brand");
-            $table->string("description");
+            $table->text("description");
             $table->string("photo")->nullable();
             $table->decimal('rental_cost', 10, 2);
             $table->foreignId('category_id')->constrained(table: 'vehicle_categories')->onDelete('cascade');
