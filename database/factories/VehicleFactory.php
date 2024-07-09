@@ -34,7 +34,6 @@ class VehicleFactory extends Factory
             'rental_cost' => fake()->randomFloat(2, 0, 10000),
             'category_id' => $vehicleCategory->id,
             'year' => fake()->year(),
-            'status' => fake()->randomElement(["Disponível", "Alugado", "Indisponível"]),
         ];
     }
 }
