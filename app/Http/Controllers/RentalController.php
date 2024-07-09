@@ -36,7 +36,7 @@ class RentalController extends Controller
 
         Rental::create($data);
 
-        return redirect()->route('account.rentals.index')->with('message', 'Veículo reservado com sucesso');
+        return redirect()->back()->with('message', 'Veículo reservado com sucesso');
     }
 
     public function update(Request $request, int $id)
@@ -47,6 +47,6 @@ class RentalController extends Controller
 
         $rental->update($data);
 
-        return redirect()->route('vehicles.index')->with('message', 'Reservado cancelada com sucesso');
+        return redirect()->back()->with('message', 'Reservado cancelada com sucesso');
     }
 }

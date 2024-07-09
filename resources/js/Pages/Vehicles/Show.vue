@@ -1,14 +1,27 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AppLayout.vue';
 import ReseveForm from './Partials/ReserveForm.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 
-defineProps({
+const props = defineProps({
     vehicle: {
         type: Array,
         required: true
     }
 });
+
+const cancelReservation = () => {
+    let rental = props.vehicle.active_rental;
+    let rentalId = rental.id;
+
+    try {
+        useForm({status: "Cancelada"}).put(route('account.rentals.update', rentalId), {
+            onFinish: () => {},
+        });
+    } catch (error) {
+        console.error('Error when canceling rental:', error);
+    }
+}
 </script>
 
 <template>
