@@ -4,26 +4,29 @@ import InputLabel from '@/Components/InputLabel.vue';
 import ImageUpload from '@/Components/ImageUpload.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import RichTextInput from '@/Components/RichTextInput.vue';
 import { usePage, useForm, router } from '@inertiajs/vue3';
 
 const props = defineProps({
     vehicle: {
-        type: Object
+        type: Object,
+        required: true,
     },
     categories: {
-        type: Array
+        type: Array,
+        required: true,
     }
 });
 
 const form = useForm({
-  photo: props.vehicle ? props.vehicle.photo : null,
-  model: props.vehicle ? props.vehicle.model : '',
-  brand: props.vehicle ? props.vehicle.brand : '',
-  plate: props.vehicle ? props.vehicle.plate : '',
-  year: props.vehicle ? props.vehicle.year : '',
-  description: props.vehicle ? props.vehicle.description : '',
-  rental_cost: props.vehicle ? props.vehicle.rental_cost : '',
-  category: props.vehicle ? props.vehicle.category.name : '',
+    photo: props.vehicle ? props.vehicle.photo : null,
+    model: props.vehicle ? props.vehicle.model : '',
+    brand: props.vehicle ? props.vehicle.brand : '',
+    plate: props.vehicle ? props.vehicle.plate : '',
+    year: props.vehicle ? props.vehicle.year : '',
+    description: props.vehicle ? props.vehicle.description : '',
+    rental_cost: props.vehicle ? props.vehicle.rental_cost : '',
+    category: props.vehicle ? props.vehicle.category.name : '',
 });
 
 const photoChange = (event) =>{
@@ -32,6 +35,7 @@ const photoChange = (event) =>{
 }
 
 const saveVehicle = () => {
+    console.log(form);
     if(props.vehicle) router.post(usePage().props.base.url+'/dashboard/veiculos/'+props.vehicle.id, {
         _method: 'put',
         photo: form.photo,
@@ -42,14 +46,16 @@ const saveVehicle = () => {
         year: form.year,
         description: form.description,
         rental_cost: form.rental_cost,
+    }, {
         preserveScroll: true,
         forceFormData: true,
         onSuccess: () => {
-            form.reset();
+            form.errors = {};
         },
-        onError: (error) => {
-            console.log(error);
-        },
+        onError: (errors) => {
+            console.log(errors);
+            form.errors = errors;
+        }
     });
     else form.post(route('dashboard.vehicles.store'), {
         preserveScroll: true,
@@ -66,7 +72,7 @@ const saveVehicle = () => {
 <template>
     <section>
         <form @submit.prevent="saveVehicle" class="space-y-6">
-            <ImageUpload name="photo" @change="photoChange" :image="vehicle && vehicle.photo? (vehicle.photo):null"></ImageUpload>
+            <ImageUpload name="photo" @change="photoChange" :image="vehicle && vehicle.photo? vehicle.photo:null"></ImageUpload>
 
             <div>
                 <InputLabel for="category" value="Categoria" />
@@ -128,7 +134,7 @@ const saveVehicle = () => {
             <div>
                 <InputLabel for="description" value="Descrição" />
 
-                <TextInput
+                <RichTextInput
                     id="description"
                     type="text"
                     class="mt-1 block w-full"

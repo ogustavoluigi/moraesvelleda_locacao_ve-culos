@@ -31,7 +31,7 @@ const form = useForm({
             </p>
         </header>
 
-        <form @submit.prevent="form.patch(route('dashboard.users.update', user.id))" class="mt-6 space-y-6">
+        <form @submit.prevent="form.put(route('dashboard.users.update', user.id))" class="mt-6 space-y-6">
             <div>
                 <InputLabel for="name" value="Nome" />
 

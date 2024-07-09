@@ -9,7 +9,7 @@
         </div>
     </div>
 </template>
-  
+
 <script>
     import defaultImage from '../../images/image.png'
 
@@ -23,12 +23,7 @@
                 imageUrl: null,
             }
         },
-        /* watch: {
-            value(newValue) {
-                this.imageUrl = newValue;
-            },
-        }, */
-        computed: {            
+        computed: {       
             imagePath(){
                 return this.imageUrl ?? defaultImage;
             }
