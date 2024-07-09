@@ -31,7 +31,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit');
+        return Redirect::route('account.profile.edit');
     }
 
     public function destroy(Request $request): RedirectResponse

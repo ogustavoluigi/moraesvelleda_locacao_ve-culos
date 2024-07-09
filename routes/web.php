@@ -13,7 +13,7 @@ Route::group(['prefix' => 'veiculos', 'as' => 'vehicles.', 'controller' => Vehic
     Route::get('/{slug}', 'show')->name('show');
 });
 
-Route::group(['prefix' => 'conta', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'conta', 'as' => 'account.', 'middleware' => 'auth'], function () {
     Route::group(['prefix' => 'reservas', 'as' => 'rentals.', 'controller' => RentalController::class], function () {
         Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');

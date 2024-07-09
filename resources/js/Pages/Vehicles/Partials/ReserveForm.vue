@@ -27,7 +27,7 @@ const form = useForm({
             </p>
         </header>
 
-        <form v-if="$page.props.auth.user" @submit.prevent="form.post(route('rentals.store'))" class="mt-6 space-y-6">
+        <form v-if="$page.props.auth.user" @submit.prevent="form.post(route('account.rentals.store'))" class="mt-6 space-y-6">
             <div>
                 <InputLabel for="start_date" value="Data e Hora de Retirada" />
 

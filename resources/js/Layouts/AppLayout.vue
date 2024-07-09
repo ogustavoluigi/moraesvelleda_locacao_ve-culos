@@ -53,7 +53,7 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('vehicles.index')" :active="route().current('vehicles.index')">
                                     Veículos
                                 </NavLink>
-                                <NavLink v-if="$page.props.auth.user" :href="route('rentals.index')" :active="route().current('rentals.index')">
+                                <NavLink v-if="$page.props.auth.user" :href="route('account.rentals.index')" :active="route().current('account.rentals.index')">
                                     Minhas Reservas
                                 </NavLink>
                             </div>
@@ -75,7 +75,7 @@ const showingNavigationDropdown = ref(false);
                                     </template>
 
                                     <template #content>
-                                        <DropdownLink :href="route('profile.edit')"> Perfil </DropdownLink>
+                                        <DropdownLink :href="route('account.profile.edit')"> Perfil </DropdownLink>
                                         <DropdownLink :href="route('logout')" method="post" as="button">Sair</DropdownLink>
                                     </template>
                                 </Dropdown>
@@ -127,7 +127,7 @@ const showingNavigationDropdown = ref(false);
                         <ResponsiveNavLink :href="route('vehicles.index')">
                             Veículos
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink v-if="$page.props.auth.user" :href="route('rentals.index')">
+                        <ResponsiveNavLink v-if="$page.props.auth.user" :href="route('account.rentals.index')">
                             Minhas Reservas
                         </ResponsiveNavLink>
                     </div>
@@ -142,7 +142,7 @@ const showingNavigationDropdown = ref(false);
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink :href="route('profile.edit')"> Perfil </ResponsiveNavLink>
+                            <ResponsiveNavLink :href="route('account.profile.edit')"> Perfil </ResponsiveNavLink>
                             <ResponsiveNavLink :href="route('logout')" method="post" as="button">
                                 Sair
                             </ResponsiveNavLink>

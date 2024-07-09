@@ -1,7 +1,7 @@
 <script setup>
 import { useForm } from '@inertiajs/vue3';
 
-defineProps({
+const props = defineProps({
     vehicle: {
         type: Object,
         required: true
@@ -9,11 +9,11 @@ defineProps({
 });
 
 const cancelReservation = () => {
-    let rental = this.vehicle.active_rental;
+    let rental = props.vehicle.active_rental;
     let rentalId = rental.id;
 
     try {
-        useForm({status: "Cancelada"}).put(route('rentals.update', rentalId), {
+        useForm({status: "Cancelada"}).put(route('account.rentals.update', rentalId), {
             onFinish: () => {},
         });
     } catch (error) {
