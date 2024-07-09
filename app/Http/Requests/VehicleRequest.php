@@ -15,7 +15,7 @@ class VehicleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category' => ['required', 'exists:vehicle_categories,name'],
+            'category' => ['required'],
             'model' => ['required', 'string'],
             'brand' => ['required', 'string'],
             'plate' => [

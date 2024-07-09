@@ -35,7 +35,6 @@ const photoChange = (event) =>{
 }
 
 const saveVehicle = () => {
-    console.log(form);
     if(props.vehicle) router.post(usePage().props.base.url+'/dashboard/veiculos/'+props.vehicle.id, {
         _method: 'put',
         photo: form.photo,

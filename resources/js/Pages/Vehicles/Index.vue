@@ -22,7 +22,7 @@ defineProps({
 
         <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="grid gap-6 lg:grid-cols-3 lg:gap-8">
-                <vehicle-card v-for="vehicle in vehicles.data" :vehicle="vehicle"></vehicle-card>
+                <VehicleCard v-for="vehicle in vehicles.data" :vehicle="vehicle"></VehicleCard>
             </div>
 
             <div class="flex mt-12 justify-center">
