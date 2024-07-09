@@ -21,10 +21,8 @@ cd moraesvelleda_locacao_veiculos
 # Instale as dependências PHP
 composer install
 
-# Instale as dependências JavaScript
+# Instale as dependências JavaScript (npm ou yarn)
 npm install
-# ou
-yarn install
 
 # Copie o arquivo .env.example para .env
 cp .env.example .env
@@ -57,3 +55,8 @@ php artisan db:seed
 
 # Execute o build do Vite
 npm run build
+```
+
+## Primeiro Administrador
+Usuário: admin@admin.com
+Senha: admin
